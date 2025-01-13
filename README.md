@@ -36,3 +36,32 @@ This repository contains:
 1. Clone the repository:
    ```bash
    git clone https://github.com/your-username/testing-repo.git
+
+<svg viewBox="0 0 500 120" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .text {
+      font-family: Arial, sans-serif;
+      font-size: 24px;
+      fill: black;
+      stroke: black;
+      stroke-width: 0.5;
+      animation: typing 3s steps(22) infinite, blink 0.5s step-end infinite;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    @keyframes typing {
+      from {
+        stroke-dasharray: 0, 100;
+      }
+      to {
+        stroke-dasharray: 100, 0;
+      }
+    }
+    @keyframes blink {
+      50% {
+        fill-opacity: 0;
+      }
+    }
+  </style>
+  <text x="10" y="60" class="text">Welcome to My GitHub Profile!</text>
+</svg>
