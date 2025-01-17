@@ -1,0 +1,113 @@
+import datetime
+
+# Display the banner
+print("################################################################")
+print("#--------------------------------------------------------------#")
+print("#-----------------------ZINGY FOOD STORE-----------------------#")
+print("#--------------------------by YASHRAJ--------------------------#")
+print("#--------------------------------------------------------------#")
+print("#                           Welcome                            #")
+print("#                                                              #")
+print("#    NORTH INDIAN, CHINESE, ITALIAN, AMERICAN, SOUTH INDIAN    #")
+print("#                                                              #")
+print("#                                                              #")
+print("# DINE-IN in your favorite restaurant                         #")
+print("# HOME-DELIVERY in just 25 minutes                            #")
+print("#                                                              #")
+print("#                   50% OFF on your first order               #")
+print("#                                                              #")
+print("# Subscribe to our premium                                     #")
+print("# ZINGY+ to redeem exciting offers of the day!                #")
+print("#                                                              #")
+print("# CUSTOMER ASSISTANCE: 9953790039                              #")
+print("# Feedback: Feedback@Zingy.in                                 #")
+print("################################################################")
+print("#                        Choose options                        #")
+print("#                                                              #")
+print("# ENTER 1 for DINE-IN                                          #")
+print("# ENTER 2 for DELIVERY                                         #")
+print("# ENTER 3 to EXIT                                              #")
+
+# Define restaurant menus
+menus = {
+    "NID": {"Paneer Butter Masala": 200, "Dal Makhani": 180, "Butter Naan": 40},
+    "SFC": {"Masala Dosa": 150, "Idli": 100, "Vada": 90},
+    "LIL": {"Margherita Pizza": 300, "Pasta Alfredo": 250, "Tiramisu": 200},
+    "RM": {"Chicken Curry": 250, "Mutton Korma": 350, "Butter Naan": 40},
+    "SCC": {"Tandoori Chicken": 400, "Chicken Lollipop": 300, "Hakka Noodles": 200},
+    "COW": {"Spring Rolls": 150, "Manchurian": 200, "Chow Mein": 180},
+    "RB": {"Chicken Biryani": 250, "Mutton Biryani": 350, "Raita": 50},
+    "ASB": {"Caesar Salad": 200, "Greek Salad": 220, "Smoothie": 150},
+    "UB": {"Burger": 150, "Fries": 100, "Shake": 150},
+    "MP": {"Mutton Pie": 400, "Mashed Potatoes": 150, "Gravy": 120},
+}
+
+# Define today's date
+today = datetime.date.today()
+formatted_date = today.strftime("%Y-%m-%d")
+
+# Loop for multiple attempts
+while True:
+    print("\nPlease choose: DINE-IN or DELIVERY")
+    print("1 for DINE-IN")
+    print("2 for DELIVERY")
+    print("3 to EXIT")
+    
+    try:
+        selection = int(input("Enter your option: "))
+        
+        if selection == 1:  # DINE-IN
+            print("Choose your restaurant LOCATION:")
+            for code, name in menus.items():
+                print(f"${code}: {list(name.keys())[0]} and more...")
+            
+            rest = input("Enter the special code for the restaurant to proceed further: ").strip().upper()
+            
+            if rest in menus:
+                time = input("Let us know the time (in HH:MM format) to reserve your slot: ")
+                print(f"\nYour slot is reserved at {time} on {formatted_date}.")
+                print(f"Thank you for choosing {rest}!")
+            else:
+                print("Invalid restaurant code. Please try again.")
+        
+        elif selection == 2:  # DELIVERY
+            print("Select a restaurant for delivery:")
+            for code, name in menus.items():
+                print(f"${code}: {list(name.keys())[0]} and more...")
+
+            rest = input("Enter the restaurant code: ").strip().upper()
+            
+            if rest in menus:
+                print(f"\nMenu for {rest}:")
+                for dish, price in menus[rest].items():
+                    print(f"{dish}: ₹{price}")
+                
+                order = input("Enter the dish you want to order: ").strip()
+                if order in menus[rest]:
+                    quantity = int(input("Enter the quantity: "))
+                    price = menus[rest][order] * quantity
+                    delivery_charge = 50
+                    tax = 0.18 * price
+                    total = price + delivery_charge + tax
+
+                    print("\nBill Summary:")
+                    print(f"Dish: {order}")
+                    print(f"Quantity: {quantity}")
+                    print(f"Price: ₹{price}")
+                    print(f"Delivery Charge: ₹{delivery_charge}")
+                    print(f"Tax (18%): ₹{round(tax, 2)}")
+                    print(f"Total: ₹{round(total, 2)}")
+                else:
+                    print("Invalid dish selection. Please try again.")
+            else:
+                print("Invalid restaurant code. Please try again.")
+        
+        elif selection == 3:  # EXIT
+            print("Thank you for visiting ZINGY FOOD STORE! Have a great day!")
+            break
+        
+        else:
+            print("Invalid selection. Please enter 1, 2, or 3.")
+    
+    except ValueError:
+        print("Invalid input. Please enter a valid number.")
